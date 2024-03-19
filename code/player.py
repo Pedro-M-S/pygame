@@ -15,15 +15,15 @@ class Player(pygame.sprite.Sprite):
 
         self.import_player_assets()
 
-        self.status = 'walk_down_idle'
+        self.status = 'start_sleep'
 
         self.frame_index = 0
-        self.animation_speed = 0.2
+        self.animation_speed = 0.1
 
     
     def get_status(self):
         if self.direction.x == 0 and self.direction.y == 0:
-            if not 'idle' in self.status:
+            if not 'idle' in self.status and not 'sleep' in self.status:
                 self.status = self.status + '_idle'
         """
         if self.attacking:
@@ -77,7 +77,6 @@ class Player(pygame.sprite.Sprite):
             key_pressed = True
         else:
             self.direction.x = 0
-            self.direction.y = 0
             key_pressed = False
 
     def move(self):
